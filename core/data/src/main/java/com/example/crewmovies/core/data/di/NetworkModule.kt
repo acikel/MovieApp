@@ -4,6 +4,8 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -15,6 +17,7 @@ import javax.inject.Singleton
 //Sets up the network connection via OkHttpClient with Gson and Retrofit when an MovieService is
 //generated via dependency injection.
 @Module
+@InstallIn(SingletonComponent::class)
 class NetworkModule {
     @Provides
     fun provideOkHttpClient(): OkHttpClient {
