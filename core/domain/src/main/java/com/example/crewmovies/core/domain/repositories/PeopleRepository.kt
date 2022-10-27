@@ -1,8 +1,8 @@
 package com.example.crewmovies.core.domain.repositories
 
 import com.example.crewmovies.core.domain.models.PeopleResultModel
-import io.reactivex.Single
+import kotlinx.coroutines.flow.Flow
 
 interface PeopleRepository {
-        fun getPeopleDetailsByName(): Single<ArrayList<PeopleResultModel>>
+        fun getPeopleDetailsByName(): Flow<ArrayList<PeopleResultModel>>
 }

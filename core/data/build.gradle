@@ -57,8 +57,8 @@ dependencies {
     implementation "com.google.code.gson:gson:2.9.0"
     //RxJava und RxAndroid dependencies:
     //implementation "io.reactivex.rxjava2:rxkotlin:2.3.0"
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.12'
+    //implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    //implementation 'io.reactivex.rxjava2:rxjava:2.2.12'
     //implementation "io.reactivex.rxjava2:rxkotlin:2.3.0"
     //implementation "com.jakewharton.rxbinding2:rxbinding-kotlin:2.2.0"
     //Hilt dependencies:
