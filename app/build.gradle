@@ -2,8 +2,8 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     //hilt plugin
-    id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -59,7 +59,6 @@ dependencies {
     implementation 'androidx.compose.material:material:1.1.1'
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1"
     implementation project(path: ':core:domain')
-    implementation project(path: ':core:domain')
     implementation project(path: ':core:data')
     implementation 'androidx.lifecycle:lifecycle-runtime-compose:2.6.0-alpha03'
     testImplementation 'junit:junit:4.13.2'
@@ -69,8 +68,16 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
     //Hilt dependencies:
-    implementation "com.google.dagger:hilt-android:2.38.1"
-    kapt "com.google.dagger:hilt-compiler:2.38.1"
+    implementation "com.google.dagger:hilt-android:2.42"
+    //kapt "com.google.dagger:hilt-compiler:2.42"
+    kapt "com.google.dagger:hilt-android-compiler:2.42"
+    implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
     //Url to picture converter dependency (with internet permission in manifest):
     implementation("io.coil-kt:coil-compose:2.0.0-rc01")
+
+/*
+    implementation 'com.squareup.retrofit2:retrofit:2.2.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
+ */
 }

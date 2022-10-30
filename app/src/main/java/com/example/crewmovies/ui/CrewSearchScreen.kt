@@ -8,7 +8,6 @@ import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -17,23 +16,21 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.example.crewmovies.core.domain.models.PeopleResultModel
 
 @SuppressLint("StateFlowValueCalledInComposition")
-@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun CrewSearchScreen(
     modifier: Modifier = Modifier,
-    crewSearchViewModel: CrewSearchViewModel = viewModel()
+    crewSearchViewModel: CrewSearchViewModel = hiltViewModel()
 ){
     Column(
         modifier = modifier
     ) {
-        CrewSearchTextField(searchName = crewSearchViewModel.peopleSearchName, onUserSearchChanged = {crewSearchViewModel::fillListWithSearchResult})
+        CrewSearchTextField(searchName = crewSearchViewModel.peopleSearchName, onUserSearchChanged = crewSearchViewModel::fillListWithSearchResult)
         CrewSearchList(urlToPicture = crewSearchViewModel::getPainterFromUrl, searchResultList = crewSearchViewModel.uiPeopleSearchListState.value)
     }
 }
@@ -41,14 +38,14 @@ fun CrewSearchScreen(
 @Composable
 fun CrewSearchTextField(
     searchName: String,
-    onUserSearchChanged: (String) -> Unit,
+    onUserSearchChanged: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     OutlinedTextField(
         value = searchName,
         //singleLine = true,
-        //modifier = Modifier.fillMaxWidth(),
-        onValueChange = onUserSearchChanged,
+        modifier = modifier.fillMaxWidth(),
+        onValueChange =  { onUserSearchChanged() },
         /*
         label = {
             if (isGuessWrong) {
@@ -103,12 +100,12 @@ fun CrewSearchCard(
             contentScale = ContentScale.Crop,
             //modifier = Modifier.clip(CircleShape)
         )
-        //Put crew name into another box to be able to align it inside the barent box.
+        //Put crew name into another box to be able to align it inside the parent box.
         Box(
             modifier = modifier.fillMaxSize().padding(12.dp),
             contentAlignment = Alignment.BottomStart
         ) {
-            //TODO text style in theme reintun.
+            //TODO text style in theme rein tun.
             Text(crewName, style = TextStyle(color = Color.White, fontSize = 16.sp))
         }
     }
@@ -116,6 +113,6 @@ fun CrewSearchCard(
 
 @Preview
 @Composable
-fun crewSearchTextFieldPreview(crewSearchViewModel: CrewSearchViewModel = viewModel()){
-    CrewSearchTextField(searchName = crewSearchViewModel.peopleSearchName, onUserSearchChanged = {})
+fun CrewSearchTextFieldPreview(){
+    CrewSearchTextField(searchName = "Steven Spielberg", onUserSearchChanged = {})
 }

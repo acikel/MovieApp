@@ -3,19 +3,17 @@ package com.example.crewmovies.ui
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.lifecycle.ViewModel
-import coil.compose.rememberAsyncImagePainter
 import com.example.crewmovies.core.domain.models.PeopleResultModel
 import com.example.crewmovies.core.domain.usecases.GetPeopleDetailsByNameUseCase
 import com.example.crewmovies.core.domain.usecases.GetProfilePictureByUrlUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import javax.inject.Inject
 
 @HiltViewModel
-class CrewSearchViewModel (
+class CrewSearchViewModel @Inject constructor(
     private val getProfilePictureUseCase : GetProfilePictureByUrlUseCase,
     private val getPeopleDetailsByNameUseCase : GetPeopleDetailsByNameUseCase,
 ): ViewModel() {
