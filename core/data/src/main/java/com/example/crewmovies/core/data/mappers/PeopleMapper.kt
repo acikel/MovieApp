@@ -7,7 +7,7 @@ import com.example.crewmovies.core.domain.models.PeopleResultModel
 import javax.inject.Inject
 
 //class PeopleMapper  @Inject constructor(private val knownForMapper: dagger.Lazy<KnownForMapper>) {
-class PeopleMapper  @Inject constructor() {
+class PeopleMapper @Inject constructor() {
     fun toPeopleModel(peopleModelServer: PeopleResultDataModel): PeopleResultModel {
         return PeopleResultModel(
             peopleModelServer.id ?: null,

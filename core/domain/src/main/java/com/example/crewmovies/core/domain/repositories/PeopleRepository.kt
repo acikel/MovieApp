@@ -5,4 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface PeopleRepository {
         fun getPeopleDetailsByName(): Flow<ArrayList<PeopleResultModel>>
+        fun getProfilePictureByUrl(urlEnd : String): String
 }
