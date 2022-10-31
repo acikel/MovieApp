@@ -3,7 +3,6 @@ import com.example.crewmovies.core.data.apiservice.MovieService
 import com.example.crewmovies.core.data.mappers.PeopleMapper
 import com.example.crewmovies.core.domain.models.PeopleResultModel
 import com.example.crewmovies.core.domain.repositories.PeopleRepository
-import io.reactivex.Single
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

@@ -49,9 +49,10 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     //implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.20"
     //retrofit 2 dependencies and Gson to convert json response to serialized object:
-    implementation 'com.squareup.retrofit2:retrofit:2.2.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.6.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
+    //implementation 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
     //implementation 'com.squareup.retrofit2:adapter-rxjava:2.2.0'
 
     implementation "com.google.code.gson:gson:2.9.0"
@@ -64,7 +65,9 @@ dependencies {
     //Hilt dependencies:
     implementation "com.google.dagger:hilt-android:2.42"
     kapt "com.google.dagger:hilt-compiler:2.42"
+    kapt "com.google.dagger:dagger-android-processor:2.42"
 
     //implementation 'com.squareup.okhttp3:okhttp:4.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+
 }
