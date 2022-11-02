@@ -6,10 +6,10 @@ import kotlinx.coroutines.flow.Flow
 import retrofit2.http.Query
 
 interface MovieService {
-    //http://api.themoviedb.org/3/search/person?api_key=7742db1161b96d5da49d8268ec472eae&query=Steven+Spielberg
-    @GET("3/search/person?")
-    fun getPeopleDetailsByName(@Query("api_key") app_key: String, @Query("query") personName: String): Flow<PeopleResponseDataModel>
-
+    //https://api.themoviedb.org/3/search/person?api_key=7742db1161b96d5da49d8268ec472eae&query=Spielberg%20Steven
+    @GET("3/search/person")
+    //fun getPeopleDetailsByName(@Query("api_key") app_key: String, @Query("query") personName: String): Flow<PeopleResponseDataModel>
+    suspend fun getPeopleDetailsByName(@Query("api_key") app_key: String, @Query("query") personName: String): PeopleResponseDataModel
 }
 
 /*

@@ -4,6 +4,6 @@ import com.example.crewmovies.core.domain.models.PeopleResultModel
 import kotlinx.coroutines.flow.Flow
 
 interface PeopleRepository {
-        fun getPeopleDetailsByName(): Flow<ArrayList<PeopleResultModel>>
+        fun getPeopleDetailsByName(peopleSearchName : String): Flow<ArrayList<PeopleResultModel>>
         fun getProfilePictureByUrl(urlEnd : String): String
 }

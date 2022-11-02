@@ -6,6 +6,6 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class GetPeopleDetailsByNameUseCase @Inject constructor(val peopleRepo: PeopleRepository) {
-    operator fun invoke(): Flow<ArrayList<PeopleResultModel>> =
-        peopleRepo.getPeopleDetailsByName()
+    operator fun invoke(peopleSearchName : String): Flow<ArrayList<PeopleResultModel>> =
+        peopleRepo.getPeopleDetailsByName( peopleSearchName )
 }
