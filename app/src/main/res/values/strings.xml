@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">CrewMovies</string>
     <string name="search_people_hint">Search for a person</string>
+    <string name="lists">Lists</string>
 </resources>
