@@ -45,12 +45,12 @@ fun CrewBottomTabRow(
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             allScreens.forEach { screen ->
-                CrewTab(
-                    text = screen.name,
-                    icon = screen.icon,
-                    onSelected = { onTabSelected(screen) },
-                    selected = currentScreen == screen
-                )
+                    CrewTab(
+                        text = screen.name,
+                        icon = screen.icon,
+                        onSelected = { onTabSelected(screen) },
+                        selected = currentScreen == screen
+                    )
             }
         }
     }

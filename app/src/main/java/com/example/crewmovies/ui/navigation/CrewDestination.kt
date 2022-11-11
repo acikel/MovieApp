@@ -26,6 +26,15 @@ object Lists : CrewDestination {
     override val destination = "lists_destination"
 }
 
+/*
+object NewListDialog : CrewDestination {
+    override val icon = null
+    override val name = "NewListsDialog"
+    override val route = "new_list_dialog_route"
+    override val destination = "new_list_dialog_destination"
+}
+ */
+
 // Screens to be displayed in the top RallyTabRow
 val crewTabRowScreens = listOf(Home, Lists)
 
