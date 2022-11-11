@@ -2,4 +2,9 @@
     <string name="app_name">CrewMovies</string>
     <string name="search_people_hint">Search for a person</string>
     <string name="lists">Lists</string>
+    <string name="new_list">New List</string>
+    <string name="new_list_hint">Title</string>
+    <string name="cancel">Cancel</string>
+    <string name="create">Create</string>
+    <string name="list_name_empty_error">List name can\'t be empty</string>
 </resources>

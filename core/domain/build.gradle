@@ -4,6 +4,8 @@ plugins {
     //hilt plugin
     id 'dagger.hilt.android.plugin'
     id 'kotlin-kapt'
+    //for dataclass and flow emit:
+    id("kotlin-parcelize")
 }
 
 android {

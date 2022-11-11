@@ -26,7 +26,9 @@ class CrewSearchViewModel @Inject constructor(
         private set
 
     private var _uiPeopleSearchListState : MutableStateFlow<ArrayList<PeopleResultModel>> = MutableStateFlow(ArrayList(mutableListOf()))
-    //val uiPeopleSearchListState: StateFlow<ArrayList<PeopleResultModel>> = _uiPeopleSearchListState
+    val uiPeopleSearchListState: StateFlow<ArrayList<PeopleResultModel>> = _uiPeopleSearchListState
+
+    /*
     val uiPeopleSearchListState: StateFlow<ArrayList<PeopleResultModel>>
         get () = getSearch()
 
@@ -34,6 +36,8 @@ fun getSearch() : StateFlow<ArrayList<PeopleResultModel>>{
     println("size: " + _uiPeopleSearchListState.value.size)
     return _uiPeopleSearchListState
 }
+     */
+
     /*
     val uiPeopleSearchListState: StateFlow<ArrayList<PeopleResultModel>>
         get() =
