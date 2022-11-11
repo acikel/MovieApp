@@ -1,6 +1,7 @@
 package com.example.crewmovies.core.data.repositories
 import com.example.crewmovies.core.data.apiservice.MovieService
 import com.example.crewmovies.core.data.mappers.PeopleMapper
+import com.example.crewmovies.core.data.models.PeopleResponseDataModel
 import com.example.crewmovies.core.domain.models.PeopleResultModel
 import com.example.crewmovies.core.domain.repositories.PeopleRepository
 import kotlinx.coroutines.Dispatchers
@@ -55,15 +56,16 @@ class PeopleRepositoryImpl @Inject constructor (
     }
 
 
+    override fun getPopularPeople(): Flow<ArrayList<PeopleResultModel>> {
+        var popularPeople : PeopleResponseDataModel = PeopleResponseDataModel()
 
+        return  flow {
+            movieService.getPopularPeople(api_key).collect {
+                popularPeople = it
+            }
 
-
-
-
-
-
-    override fun getProfilePictureByUrl(urlEnd: String): String {
-        return "$profileImageUrl$urlEnd"
+            emit( peopleMapper.toPeopleModelList(popularPeople.results))
+        }.flowOn(Dispatchers.IO)
     }
 
     companion object {
@@ -71,6 +73,6 @@ class PeopleRepositoryImpl @Inject constructor (
         //TODO von eingabr in diese form bringen und übergeben
         //var personName = "Spielberg"
         //var personName = "Steven"
-        var profileImageUrl = "https://image.tmdb.org/t/p/original"
+        //var profileImageUrl = "https://image.tmdb.org/t/p/original"
     }
 }

@@ -16,6 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.crewmovies.ui.*
+import com.example.crewmovies.ui.ScreenCrewSearch.CrewBottomTabRow
 import com.example.crewmovies.ui.theme.CrewMoviesTheme
 import dagger.hilt.android.AndroidEntryPoint
 

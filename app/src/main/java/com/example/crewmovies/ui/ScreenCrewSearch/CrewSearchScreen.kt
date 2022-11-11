@@ -1,4 +1,4 @@
-package com.example.crewmovies.ui
+package com.example.crewmovies.ui.ScreenCrewSearch
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -28,8 +28,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.example.crewmovies.core.domain.models.PeopleResultModel
 import com.example.crewmovies.R
@@ -92,7 +90,7 @@ fun CrewSearchTopAppBar(
 ) {
     TopAppBar(
 
-        content = { CrewSearchTopAppBarContent(searchName = searchName, onKeyboardActionDone = onKeyboardActionDone, onValueChange = onValueChange)},
+        content = { CrewSearchTopAppBarContent(searchName = searchName, onKeyboardActionDone = onKeyboardActionDone, onValueChange = onValueChange) },
         backgroundColor = MaterialTheme.colors.background,
         elevation = 0.dp,
         modifier = modifier

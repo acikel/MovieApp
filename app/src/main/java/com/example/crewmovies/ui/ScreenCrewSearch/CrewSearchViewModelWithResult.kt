@@ -1,4 +1,4 @@
-package com.example.crewmovies.ui
+package com.example.crewmovies.ui.ScreenCrewSearch
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
@@ -32,7 +32,7 @@ class CrewSearchViewModelWithResult @Inject constructor(
         get () = getSearch()
 
     fun getSearch() : StateFlow<Result>{
-        println("size: " + _uiPeopleSearchListState.value)
+        //println("size: " + _uiPeopleSearchListState.value)
         return _uiPeopleSearchListState
     }
     /*
@@ -57,7 +57,7 @@ class CrewSearchViewModelWithResult @Inject constructor(
             initialValue = null
         ) as MutableStateFlow<ArrayList<PeopleResultModel>>
          */
-        println("size: fillListWithSearchResult")
+        //println("size: fillListWithSearchResult")
 
         /*
 

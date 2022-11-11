@@ -7,9 +7,16 @@ import retrofit2.http.Query
 
 interface MovieService {
     //https://api.themoviedb.org/3/search/person?api_key=7742db1161b96d5da49d8268ec472eae&query=Spielberg%20Steven
+    //https://developers.themoviedb.org/3/search/search-people  (api doku für obere url)
     @GET("3/search/person")
     //fun getPeopleDetailsByName(@Query("api_key") app_key: String, @Query("query") personName: String): Flow<PeopleResponseDataModel>
+    //first query puts ? then their name and then the value and all the other querys after that put & their name and the value
     suspend fun getPeopleDetailsByName(@Query("api_key") app_key: String, @Query("query") personName: String): PeopleResponseDataModel
+
+    //https://api.themoviedb.org/3/person/popular?api_key=7742db1161b96d5da49d8268ec472eae
+    //https://developers.themoviedb.org/3/people/get-popular-people  (api doku für obere url)
+    @GET("3/person/popular")
+    fun getPopularPeople(@Query("api_key") app_key: String): Flow<PeopleResponseDataModel>
 }
 
 /*

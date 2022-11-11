@@ -6,6 +6,8 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.crewmovies.ui.ScreenCrewSearch.CrewSearchScreen
+import com.example.crewmovies.ui.ScreenLists.ListsScreen
 
 @Composable
 fun CrewNavHost (
