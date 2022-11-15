@@ -1,4 +1,4 @@
-package com.example.crewmovies.ui.ScreenCrewSearch
+package com.example.crewmovies.ui.screen_crew_search
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.animateContentSize
@@ -24,14 +24,15 @@ import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.crewmovies.ui.CrewDestination
+import com.example.crewmovies.ui.CrewSearchNavigationDestinations
+import com.example.crewmovies.ui.NavigationCommandWithIcon
 import java.util.*
 
 @Composable
 fun CrewBottomTabRow(
-    allScreens: List<CrewDestination>,
-    onTabSelected: (CrewDestination) -> Unit,
-    currentScreen: CrewDestination
+    allScreens: List<NavigationCommandWithIcon>,
+    onTabSelected: (NavigationCommandWithIcon) -> Unit,
+    currentScreen: NavigationCommandWithIcon
 ) {
     Surface(
         Modifier

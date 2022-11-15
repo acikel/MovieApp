@@ -10,62 +10,85 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.crewmovies.ui.*
-import com.example.crewmovies.ui.ScreenCrewSearch.CrewBottomTabRow
+import com.example.crewmovies.ui.navigation.NavigationManager
+import com.example.crewmovies.ui.screen_crew_search.CrewBottomTabRow
 import com.example.crewmovies.ui.theme.CrewMoviesTheme
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @Inject
+    lateinit var navigationManager: NavigationManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            CrewSearchApp()
+            CrewSearchApp(navigationManager)
         }
     }
 }
 
 @Composable
-fun CrewSearchApp() {
+fun CrewSearchApp(navigationManager: NavigationManager) {
     CrewMoviesTheme {
-        // A surface container using the 'background' color from the theme
-        //TODO stateless machen wie in nowinandroid
+
+
         val navController = rememberNavController()
+        //initialize commands flow of navigation manager with initial value as its a stateflow and therefore needs a initial value
+        navigationManager.commands.collectAsState().value.also { command ->
+            if (command.destination.isNotEmpty()) {
+                navController.navigate(command.destination)
+                //navController.navigateSingleTopTo(command.destination)
+            }
+        }
+
         val currentBackStack by navController.currentBackStackEntryAsState()
         val currentDestination = currentBackStack?.destination
         val currentScreen =
-            crewTabRowScreens.find { it.route == currentDestination?.route } ?: Home
+            crewTabRowScreens.find { it.route == currentDestination?.route } ?: CrewSearchNavigationDestinations.Home
 
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colors.background,
+        CrewSearchAppScaffold(navController, currentScreen)
+    }
+}
 
-            ) {
-            //CrewSearchScreen()
-            //ListsScreen()
-            Scaffold(
-                bottomBar = {
-                    CrewBottomTabRow(
-                        allScreens = crewTabRowScreens,
-                        onTabSelected = { newScreen ->
-                            navController.navigateSingleTopTo(newScreen.route)
-                        },
-                        currentScreen = currentScreen
-                    )
-                }
-                //backgroundColor = Color(R.color.purple_light),
-            ) {
-                    innerPadding ->
-                CrewNavHost(
-                    navController = navController,
-                    modifier = Modifier.padding(innerPadding)
+@Composable
+fun CrewSearchAppScaffold(
+    navController : NavHostController,
+    currentScreen : NavigationCommandWithIcon
+){
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colors.background,
+
+        ) {
+        //CrewSearchScreen()
+        //ListsScreen()
+        Scaffold(
+            bottomBar = {
+                CrewBottomTabRow(
+                    allScreens = crewTabRowScreens,
+                    onTabSelected = { newScreen ->
+                        navController.navigateSingleTopTo(newScreen.destination)
+                    },
+                    currentScreen = currentScreen
                 )
             }
+            //backgroundColor = Color(R.color.purple_light),
+        ) {
+                innerPadding ->
+            CrewNavHost(
+                navController = navController,
+                modifier = Modifier.padding(innerPadding)
+            )
         }
     }
 }

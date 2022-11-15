@@ -1,4 +1,4 @@
-package com.example.crewmovies.ui.ScreenCrewSearch
+package com.example.crewmovies.ui.screen_crew_search
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -10,6 +10,11 @@ import com.example.crewmovies.core.domain.repositories.PeopleRepository
 import com.example.crewmovies.core.domain.usecases.GetPeopleDetailsByNameUseCase
 import com.example.crewmovies.core.domain.usecases.GetPopularPeopleUseCase
 import com.example.crewmovies.core.domain.usecases.GetProfilePictureByUrlUseCase
+import com.example.crewmovies.ui.navigation.CrewSearchDetailsDestinations
+import com.example.crewmovies.ui.navigation.NavigationManager
+import com.example.crewmovies.ui.navigation.PeopleResultModelNavArgType
+import com.example.crewmovies.ui.navigation.getJsonParse
+import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -20,6 +25,7 @@ class CrewSearchViewModel @Inject constructor(
     private val getProfilePictureUseCase: GetProfilePictureByUrlUseCase,
     private val getPeopleDetailsByNameUseCase: GetPeopleDetailsByNameUseCase,
     private val getPopularPeopleUseCase: GetPopularPeopleUseCase,
+    private val navigationManager: NavigationManager,
     val peopleRepo: PeopleRepository
 ) : ViewModel() {
 
@@ -134,6 +140,12 @@ class CrewSearchViewModel @Inject constructor(
         peopleSearchName = value
     }
 
+    fun navigateToDetailsScreen(person : PeopleResultModel){
+        val navCom = CrewSearchDetailsDestinations.crewSearchDetailsPerson(person.getJsonParse())
+        //println("Destination: ${navCom.destination}")
+        navigationManager.navigate(navCom)
+
+    }
 }
 
 

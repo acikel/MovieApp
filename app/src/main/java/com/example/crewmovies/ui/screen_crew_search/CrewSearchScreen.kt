@@ -1,8 +1,9 @@
-package com.example.crewmovies.ui.ScreenCrewSearch
+package com.example.crewmovies.ui.screen_crew_search
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
@@ -36,6 +37,7 @@ import com.example.crewmovies.R
 @Composable
 fun CrewSearchScreen(
     modifier: Modifier = Modifier,
+    onClickItem : (PeopleResultModel) -> Unit,
     crewSearchViewModel: CrewSearchViewModel = hiltViewModel()
 ){
 
@@ -71,7 +73,7 @@ fun CrewSearchScreen(
 
 
             val examplePeopleSearch: ArrayList<PeopleResultModel> by crewSearchViewModel.uiPeopleSearchListState.collectAsState(initial = arrayListOf())
-            CrewSearchList(urlToPicture = { crewSearchViewModel.getPainterFromUrl(it) }, searchResultList = examplePeopleSearch)
+            CrewSearchList(urlToPicture = { crewSearchViewModel.getPainterFromUrl(it) }, searchResultList = examplePeopleSearch, onClickItem = onClickItem)
 
 
         }
@@ -352,6 +354,7 @@ fun SearchAppBar(
 fun CrewSearchList(
     urlToPicture : ( String ) -> String,
     searchResultList : ArrayList<PeopleResultModel>,
+    onClickItem : (PeopleResultModel) -> Unit,
     modifier: Modifier = Modifier
 ){
     println("size: searchResultList$searchResultList")
@@ -363,16 +366,23 @@ fun CrewSearchList(
     ) {
         items(searchResultList.size) { index ->
 
+            //Surface(modifier = Modifier.clickable {
+
+            //    onClickItem(searchResultList[index])
+            //}) {
+                if(searchResultList[index].profilePicturePath.isNullOrEmpty()){
+                    searchResultList[index].name?.let { it1 -> CrewSearchCard("", it1, searchResultList[index], onClickItem)
+                    //searchResultList[index].name?.let { it1 -> CrewSearchCard("", it1)
+                    }
+                }else{
+                    searchResultList[index].name?.let { it1 -> CrewSearchCard(searchResultList[index].profilePicturePath?.let{urlToPicture(it)}, it1, searchResultList[index], onClickItem )
+                        //println("size: twelved: $it1")
+                    //searchResultList[index].name?.let { it1 -> CrewSearchCard(searchResultList[index].profilePicturePath?.let{urlToPicture(it)}, it1 )
+                    }
+                }
+            //}
 
 
-            if(searchResultList[index].profilePicturePath.isNullOrEmpty()){
-                searchResultList[index].name?.let { it1 -> CrewSearchCard("", it1)
-                }
-            }else{
-                searchResultList[index].name?.let { it1 -> CrewSearchCard(searchResultList[index].profilePicturePath?.let{urlToPicture(it)}, it1)
-                    println("size: twelved: $it1")
-                }
-            }
 
 
 
@@ -406,11 +416,20 @@ fun CrewSearchList(
 fun CrewSearchCard(
     url: String?,
     crewName : String,
+    person : PeopleResultModel,
+    onClickItem : (PeopleResultModel) -> Unit,
     modifier: Modifier = Modifier
 ){
-    Card(modifier = modifier.fillMaxSize(),
-       // shape = RoundedCornerShape(15.dp),
-        elevation = 5.dp
+    Card(
+        // shape = RoundedCornerShape(15.dp),
+        elevation = 5.dp,
+        modifier = modifier
+            .fillMaxSize()
+            .clickable {
+                 onClickItem(person)
+                //println("hi i was clicked $crewName")
+                //navigate to CrewSearchDetailsScreen(person =searchResultList[index])
+            }
         ) {
         Box(
             //modifier = Modifier.fillMaxSize() //with this the bottom text is not aligned correctly

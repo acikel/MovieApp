@@ -1,12 +1,10 @@
-package com.example.crewmovies.ui.ScreenCrewSearch
+package com.example.crewmovies.ui.screen_crew_search
 
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.crewmovies.core.domain.models.PeopleResultModel
 import com.example.crewmovies.core.domain.repositories.PeopleRepository
 import com.example.crewmovies.core.domain.usecases.GetPeopleDetailsByNameUseCase
 import com.example.crewmovies.core.domain.usecases.GetProfilePictureByUrlUseCase

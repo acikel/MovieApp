@@ -1,4 +1,4 @@
-package com.example.crewmovies.ui.ScreenLists
+package com.example.crewmovies.ui.screen_lists
 
 import android.content.Context
 import android.widget.Toast
@@ -14,21 +14,18 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.crewmovies.R
 
 @Composable
 fun DialogBoxAddList(
-    listName: String,
-    onValueChange: ( String ) -> Unit,
-    onDismiss: () -> Unit,
-    onCreate: () -> Unit,
-    context: Context
+    listScreenViewModel: ListScreenViewModel = hiltViewModel()
 ) {
     //val contextForToast = LocalContext.current.applicationContext
 
     Dialog(
         onDismissRequest = {
-            onDismiss()
+            listScreenViewModel.closeAddListDialog()
         }
     ) {
         Surface(
@@ -51,13 +48,13 @@ fun DialogBoxAddList(
                     //)
                 )
 
-                TextFieldAddList(listName, onValueChange)
+                TextFieldAddList(listScreenViewModel.listName, { listScreenViewModel.updateListName(it) })
 
                 Row (
                     horizontalArrangement = Arrangement.End
                         ) {
-                    TextButtonTemplate(stringResource(id = R.string.cancel), onDismiss)
-                    TextButtonCheckValueTemplate(stringResource(id = R.string.create), listName, onCreate, context)
+                    TextButtonTemplate(stringResource(id = R.string.cancel), { listScreenViewModel.closeAddListDialog() })
+                    TextButtonCheckValueTemplate(stringResource(id = R.string.create), listScreenViewModel.listName, { listScreenViewModel.createNewListAndCloseDialog() }, listScreenViewModel.getApplicationContext())
                 }
             }
         }

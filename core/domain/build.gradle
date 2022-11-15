@@ -50,6 +50,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
+    //Gson dependency to parse custom type to json and back for passing it in the navigation graph:
+    implementation "com.google.code.gson:gson:2.9.0"
     //retrofit 2 dependencies and Gson to convert json response to serialized object:
     //implementation 'com.squareup.retrofit2:retrofit:2.0.0'
     //implementation 'com.squareup.retrofit2:converter-gson:2.0.0'

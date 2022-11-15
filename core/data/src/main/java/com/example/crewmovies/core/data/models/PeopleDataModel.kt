@@ -1,5 +1,6 @@
 package com.example.crewmovies.core.data.models
 
+import com.example.crewmovies.core.data.db.model.PersonEntity
 import com.google.gson.annotations.SerializedName
 
 /*
@@ -120,4 +121,14 @@ data class KnownForDataModel (
     @SerializedName("vote_average"      ) var voteAverage      : Double?        = null,
     @SerializedName("vote_count"        ) var voteCount        : Int?           = null
 
+)
+
+
+fun PeopleResultDataModel.asEntity() = PersonEntity(
+    idNetwork = id,
+    name = name,
+    popularity = popularity,
+    profilePicturePath = profilePath,
+    knownForDepartment = knownForDepartment,
+    bio = ""
 )
