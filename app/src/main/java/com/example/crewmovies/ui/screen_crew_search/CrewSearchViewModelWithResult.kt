@@ -70,10 +70,12 @@ class CrewSearchViewModelWithResult @Inject constructor(
         //}
 
         viewModelScope.launch {
-            println("size: fifth:")
+            //println("size: fifth:")
             //var tmpState = _uiPeopleSearchListState.value
             //tmpState = ArrayList(mutableListOf())
             _uiPeopleSearchListState.value = Result.Loading
+            //with return type of peopleRepo.getPeopleDetailsByName flow and getPeopleDetailsByNameUseCase not suspend function:
+            /*
             getPeopleDetailsByNameUseCase(peopleSearchName)
             //peopleRepo.getPeopleDetailsByName()
                 .catch { e ->
@@ -84,6 +86,8 @@ class CrewSearchViewModelWithResult @Inject constructor(
                     _uiPeopleSearchListState.value = Result.Success(data)
                     println("size: third: $data.toString()")
                 }
+             */
+
         }
         println("size: second:" + _uiPeopleSearchListState.value)
     }

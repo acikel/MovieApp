@@ -1,12 +1,15 @@
 package com.example.crewmovies.core.data.mappers
 
+import com.example.crewmovies.core.data.db.model.PersonEntity
 import com.example.crewmovies.core.data.models.KnownForDataModel
 import com.example.crewmovies.core.data.models.PeopleResultDataModel
 import com.example.crewmovies.core.domain.models.KnownForModel
 import com.example.crewmovies.core.domain.models.PeopleResultModel
+import com.example.crewmovies.core.domain.models.Person
 import javax.inject.Inject
 
 //class PeopleMapper  @Inject constructor(private val knownForMapper: dagger.Lazy<KnownForMapper>) {
+/*
 class PeopleMapper @Inject constructor() {
     fun toPeopleModel(peopleModelServer: PeopleResultDataModel): PeopleResultModel {
         return PeopleResultModel(
@@ -45,3 +48,61 @@ class PeopleMapper @Inject constructor() {
         return knownForModelListServer.map { toKnownForModel(it) } as ArrayList<KnownForModel>
     }
 }
+ */
+
+
+//Better to write as extension function then mapper above so there is no need for an extra variable which is then dependency injected it can
+//directly be accessed by a function without the need of an object instance instead.
+fun PeopleResultDataModel.asPeopleResultModel() : PeopleResultModel =
+    PeopleResultModel(
+        this.id ?: null,
+        this.name ?: "",
+        this.popularity ?: null,
+        this.profilePath ?: "",
+        this.knownForDepartment ?: "",
+        //knownForMapper.get().toKnownForModelList(peopleModelServer.knownFor)
+        knownFor = this.knownFor.map { it.asKnownForModel() } as ArrayList<KnownForModel>
+    )
+
+
+fun KnownForDataModel.asKnownForModel() : KnownForModel {
+   return KnownForModel(
+        this.id ?: null,
+        this.originalTitle ?: "",
+        this.title ?: "",
+        this.overview ?: "",
+        this.posterPath ?: "",
+        this.releaseDate ?: "",
+        this.video ?: null,
+        this.voteAverage ?: null
+
+    )
+}
+
+fun PersonEntity.asExternalModel() = Person(
+    id = id,
+    idNetwork = idNetwork,
+    name = name,
+    popularity = popularity,
+    profilePicturePath = profilePicturePath,
+    knownForDepartment = knownForDepartment,
+    bio = bio
+)
+
+fun Person.asEntity() = PersonEntity(
+    idNetwork = idNetwork,
+    name = name,
+    popularity = popularity,
+    profilePicturePath = profilePicturePath,
+    knownForDepartment = knownForDepartment,
+    bio = bio
+)
+
+fun PeopleResultDataModel.asEntity() = PersonEntity(
+    idNetwork = id,
+    name = name,
+    popularity = popularity,
+    profilePicturePath = profilePath,
+    knownForDepartment = knownForDepartment,
+    bio = ""
+)

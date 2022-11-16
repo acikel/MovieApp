@@ -1,4 +1,4 @@
-package com.example.crewmovies.core.domain.db.model
+package com.example.crewmovies.core.domain.models
 
 data class Person(
     var id: Int = 0,

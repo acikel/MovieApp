@@ -8,6 +8,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.imageResource
@@ -53,20 +54,20 @@ fun ImageParallaxScroll(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            //.verticalScroll(scrollState),
+            .verticalScroll(scrollState),
     ) {
         //rememberAsyncImagePainter("https://www.example.com/image.jpg")
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(500.dp)
-                .background(Color.White),
-                /*
+                .background(Color.White)
+
                 .graphicsLayer {
                     alpha = 1f - ((scrollState.value.toFloat() / scrollState.maxValue) * 1.5f)
                     translationY = 0.5f * scrollState.value
                 },
-                 */
+
             contentAlignment = Alignment.Center
         ) {
             AsyncImage(

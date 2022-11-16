@@ -124,11 +124,4 @@ data class KnownForDataModel (
 )
 
 
-fun PeopleResultDataModel.asEntity() = PersonEntity(
-    idNetwork = id,
-    name = name,
-    popularity = popularity,
-    profilePicturePath = profilePath,
-    knownForDepartment = knownForDepartment,
-    bio = ""
-)
+

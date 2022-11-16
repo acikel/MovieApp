@@ -88,9 +88,11 @@ class CrewSearchViewModel @Inject constructor(
                 //var tmpState = _uiPeopleSearchListState.value
                 //tmpState = ArrayList(mutableListOf())
                 _uiPeopleSearchListState.value = ArrayList(mutableListOf())
-                val response = getPeopleDetailsByNameUseCase(peopleSearchName)
+                val response = getPeopleDetailsByNameUseCase.run(peopleSearchName)
                 //println("size: sixth:")
-                response.collect { list -> _uiPeopleSearchListState.value = list }
+                //instead of using a flow a coroutine is used as example to another function
+                //response.collect { list -> _uiPeopleSearchListState.value = list }
+                _uiPeopleSearchListState.value = response
             }
 
             //peopleRepo.getPeopleDetailsByName()

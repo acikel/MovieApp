@@ -4,8 +4,7 @@ import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.crewmovies.core.domain.db.model.Person
-import com.example.crewmovies.core.domain.models.KnownForModel
+import com.example.crewmovies.core.domain.models.Person
 
 @Entity(tableName = "person")
 class PersonEntity{
@@ -46,21 +45,3 @@ class PersonEntity{
 }
 
 
-fun PersonEntity.asExternalModel() = Person(
-    id = id,
-    idNetwork = idNetwork,
-    name = name,
-    popularity = popularity,
-    profilePicturePath = profilePicturePath,
-    knownForDepartment = knownForDepartment,
-    bio = bio
-)
-
-fun Person.asEntity() = PersonEntity(
-    idNetwork = idNetwork,
-    name = name,
-    popularity = popularity,
-    profilePicturePath = profilePicturePath,
-    knownForDepartment = knownForDepartment,
-    bio = bio
-)

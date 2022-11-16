@@ -1,8 +1,9 @@
 package com.example.crewmovies.di
 
 import com.example.crewmovies.core.data.apiservice.MovieService
+import com.example.crewmovies.core.data.db.dao.PersonDao
 import com.example.crewmovies.core.data.di.NetworkModule
-import com.example.crewmovies.core.data.mappers.PeopleMapper
+//import com.example.crewmovies.core.data.mappers.PeopleMapper
 import com.example.crewmovies.core.data.repositories.PeopleRepositoryImpl
 import com.example.crewmovies.core.domain.repositories.PeopleRepository
 import dagger.Module
@@ -15,9 +16,12 @@ import dagger.hilt.components.SingletonComponent
 class PeopleRepositoryModule {
     @Provides
     fun providePeopleRepository(
-        peopleMapper : PeopleMapper,
-        movieService : MovieService
+        //peopleMapper : PeopleMapper,
+        movieService : MovieService,
+        personDao: PersonDao
     ) : PeopleRepository{
-        return PeopleRepositoryImpl(movieService, peopleMapper)
+        //return PeopleRepositoryImpl(movieService, peopleMapper)
+        //Without mapper
+        return PeopleRepositoryImpl(movieService, personDao)
     }
 }

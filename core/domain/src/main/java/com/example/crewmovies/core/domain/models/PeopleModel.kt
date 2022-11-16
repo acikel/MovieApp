@@ -12,7 +12,7 @@ data class PeopleResultModel (
     var knownFor : ArrayList<KnownForModel> = arrayListOf()
     ){
     //Method to parse this onject into a json object to be able to pass it as an arguement in the navigation graph (see CrewNavHost.kt)
-    override fun toString(): String = Uri.encode(Gson().toJson(this))
+    //override fun toString(): String = Uri.encode(Gson().toJson(this))
 }
 
 
