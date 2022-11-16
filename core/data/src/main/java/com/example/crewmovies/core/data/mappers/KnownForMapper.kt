@@ -1,6 +1,6 @@
 package com.example.crewmovies.core.data.mappers
 
-import com.example.crewmovies.core.data.models.KnownForDataModel
+import com.example.crewmovies.core.data.apiservice.models.KnownForDataModel
 import com.example.crewmovies.core.domain.models.KnownForModel
 import javax.inject.Inject
 

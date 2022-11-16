@@ -1,4 +1,4 @@
-package com.example.crewmovies.core.data.models
+package com.example.crewmovies.core.data.apiservice.models
 
 import com.example.crewmovies.core.data.db.model.PersonEntity
 import com.google.gson.annotations.SerializedName

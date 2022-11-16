@@ -1,8 +1,8 @@
 package com.example.crewmovies.core.data.mappers
 
 import com.example.crewmovies.core.data.db.model.PersonEntity
-import com.example.crewmovies.core.data.models.KnownForDataModel
-import com.example.crewmovies.core.data.models.PeopleResultDataModel
+import com.example.crewmovies.core.data.apiservice.models.KnownForDataModel
+import com.example.crewmovies.core.data.apiservice.models.PeopleResultDataModel
 import com.example.crewmovies.core.domain.models.KnownForModel
 import com.example.crewmovies.core.domain.models.PeopleResultModel
 import com.example.crewmovies.core.domain.models.Person

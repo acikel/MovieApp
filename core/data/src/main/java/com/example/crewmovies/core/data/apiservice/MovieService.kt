@@ -1,6 +1,6 @@
 package com.example.crewmovies.core.data.apiservice
 
-import com.example.crewmovies.core.data.models.PeopleResponseDataModel
+import com.example.crewmovies.core.data.apiservice.models.PeopleResponseDataModel
 import retrofit2.http.GET
 import kotlinx.coroutines.flow.Flow
 import retrofit2.http.Query
